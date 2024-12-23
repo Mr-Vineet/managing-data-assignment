@@ -7,7 +7,12 @@ const peopleDetails = [
     place: "Pune",
     currentlyEmployed: true,
     ownsCar: true,
-    hobbies: [{ type: "playing chess" }, { type: "gardening" }],
+    hobbies: [
+      {
+        type: "playing chess",
+      },
+      { type: "gardening" },
+    ],
     havePets: true,
     petsInfo: [
       {
@@ -160,6 +165,25 @@ const findCitiesIndividualsLiveIn = function (records) {
 // console.log(findCitiesIndividualsLiveIn(peopleDetails));
 
 // 6. How many hobbies are shared across the group? What are they?
+const hasNoDuplicates = function (set, element) {
+  if (!set.includes(element)) {
+    set.push(element);
+  }
+
+  return set;
+};
+
+const removeDuplicates = function (numbers) {
+  return numbers.reduce(hasNoDuplicates, []);
+};
+
+const findUniqueHobbies = function (records) {
+  const hobbiesInfo = records.flatMap((individual) => individual.hobbies);
+  const hobbies = hobbiesInfo.map((hobby) => hobby.type);
+  return removeDuplicates(hobbies);
+};
+
+console.log(findUniqueHobbies(peopleDetails));
 
 // 7. How many pets belong to people who are currently unemployed? => 2
 const countPetsOfUnemployed = function (records) {
@@ -210,4 +234,6 @@ const countIndividualsHavingMoreThanOnePet = function (records) {
   return individualsWithMoreThanOnePet.length;
 };
 
-console.log(countIndividualsHavingMoreThanOnePet(peopleDetails));
+// console.log(countIndividualsHavingMoreThanOnePet(peopleDetails));
+
+// 11. Which pets are associated with specific favorite activities?
