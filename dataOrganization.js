@@ -1,6 +1,7 @@
 const peopleDetails = [
   {
     name: "Rahul",
+    age: 34,
     designation: "software engineer",
     studiedCS: true,
     place: "Pune",
@@ -168,4 +169,15 @@ const countPetsOfUnemployed = function (records) {
   return petsDetails.length;
 };
 
-console.log(countPetsOfUnemployed(peopleDetails));
+// console.log(countPetsOfUnemployed(peopleDetails));
+
+// 8. What is the average age of the individuals mentioned in the passage?
+const findAverageAge = function (records) {
+  const sumOfAges = records
+    .map((individual) => individual.age)
+    .reduce((sum, number) => sum + number);
+
+  return sumOfAges / records.length;
+};
+
+console.log(findAverageAge(peopleDetails));
