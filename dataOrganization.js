@@ -101,7 +101,7 @@ const peopleDetails = [
   },
 ];
 
-// 1. How many individuals are currently employed?
+// 1. How many individuals are currently employed? => 2
 const countEmployedIndividuals = function (records) {
   const employedIndividuls = records.filter(
     (individual) => individual.currentlyEmployed
@@ -112,7 +112,7 @@ const countEmployedIndividuals = function (records) {
 
 console.log(countEmployedIndividuals(peopleDetails));
 
-// 2. How many people own a car?
+// 2. How many people own a car? => 1
 const countIndividualsOwningCar = function (records) {
   const individualsWithCar = records.filter((individual) => individual.ownsCar);
 
@@ -121,10 +121,10 @@ const countIndividualsOwningCar = function (records) {
 
 console.log(countIndividualsOwningCar(peopleDetails));
 
-// 3. How many pets are fully vaccinated?
+// 3. How many pets are fully vaccinated? => 5
 const countfullyVaccinatedPets = function (records) {
-  const PetsDetails = records.flatMap((individual) => individual.petsInfo);
-  const fullyVaccinatedPets = PetsDetails.filter(
+  const petsDetails = records.flatMap((individual) => individual.petsInfo);
+  const fullyVaccinatedPets = petsDetails.filter(
     (specificPet) => specificPet.isVaccinated
   );
 
@@ -132,3 +132,19 @@ const countfullyVaccinatedPets = function (records) {
 };
 
 console.log(countfullyVaccinatedPets(peopleDetails));
+
+//4. What are the names of all the pets, and what type of animal is each?
+const findPetNameAndType = function (records) {
+  const petsDetails = records.flatMap((individual) => individual.petsInfo);
+  return petsDetails.map((specificPet) => [
+    specificPet.petName,
+    specificPet.petType,
+  ]);
+};
+
+console.log(findPetNameAndType(peopleDetails));
+
+// 5. Which cities do the individuals live in?
+const findCitiesIndividualsLiveIn = function (records) {
+  return records.map((individual) => individual.place);
+};
