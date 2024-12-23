@@ -121,3 +121,14 @@ const countIndividualsOwningCar = function (records) {
 
 console.log(countIndividualsOwningCar(peopleDetails));
 
+// 3. How many pets are fully vaccinated?
+const countfullyVaccinatedPets = function (records) {
+  const PetsDetails = records.flatMap((individual) => individual.petsInfo);
+  const fullyVaccinatedPets = PetsDetails.filter(
+    (specificPet) => specificPet.isVaccinated
+  );
+
+  return fullyVaccinatedPets.length;
+};
+
+console.log(countfullyVaccinatedPets(peopleDetails));
