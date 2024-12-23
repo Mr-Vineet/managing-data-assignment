@@ -8,6 +8,7 @@ const peopleDetails = [
     currentlyEmployed: true,
     ownsCar: true,
     hobbies: [{ type: "playing chess" }, { type: "gardening" }],
+    havePets: true,
     petsInfo: [
       {
         petName: "Max",
@@ -31,6 +32,7 @@ const peopleDetails = [
         type: "cooking",
       },
     ],
+    havePets: true,
     petsInfo: [
       {
         petName: "Kiwi",
@@ -56,6 +58,7 @@ const peopleDetails = [
         genre: "historical fiction",
       },
     ],
+    havePets: true,
     petsInfo: [
       {
         petName: "Bella",
@@ -92,6 +95,7 @@ const peopleDetails = [
         genre: "modern fantasy novels",
       },
     ],
+    havePets: true,
     petsInfo: [
       {
         petName: "Snowy",
@@ -180,4 +184,30 @@ const findAverageAge = function (records) {
   return sumOfAges / records.length;
 };
 
-console.log(findAverageAge(peopleDetails));
+// console.log(findAverageAge(peopleDetails));
+
+// 9. How many individuals have studied computer science, and how many of them have pets?
+const countIndividualStudiedCsAndHavePets = function (records) {
+  const csIndividualsWithPets = records.filter(
+    (individual) => individual.studiedCS && individual.havePets
+  );
+
+  return csIndividualsWithPets.length;
+};
+
+// console.log(countIndividualStudiedCsAndHavePets(peopleDetails));
+
+//10. How many individuals own more than one pet?
+const countIndividualsHavingMoreThanOnePet = function (records) {
+  const petDetails = records
+    .filter((individual) => individual.havePets)
+    .map((individual) => individual.petsInfo);
+
+  const individualsWithMoreThanOnePet = petDetails.filter(
+    (individualsPets) => individualsPets.length > 1
+  );
+
+  return individualsWithMoreThanOnePet.length;
+};
+
+console.log(countIndividualsHavingMoreThanOnePet(peopleDetails));
