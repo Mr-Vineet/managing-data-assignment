@@ -13,7 +13,6 @@ const peopleDetails = [
       },
       { type: "gardening" },
     ],
-    havePets: true,
     petsInfo: [
       {
         petName: "Max",
@@ -21,7 +20,7 @@ const peopleDetails = [
         breed: "golden retriever",
         age: 4,
         isVaccinated: true,
-        favoriteActivity: "fetch in the park",
+        favoriteActivity: ["fetch in the park"],
       },
     ],
   },
@@ -37,12 +36,12 @@ const peopleDetails = [
         type: "cooking",
       },
     ],
-    havePets: true,
     petsInfo: [
       {
         petName: "Kiwi",
         petType: "parrot",
         isVaccinated: true,
+        favoriteActivity: [],
       },
     ],
   },
@@ -63,7 +62,6 @@ const peopleDetails = [
         genre: "historical fiction",
       },
     ],
-    havePets: true,
     petsInfo: [
       {
         petName: "Bella",
@@ -71,7 +69,7 @@ const peopleDetails = [
         breed: "persian cat",
         age: 3,
         isVaccinated: true,
-        favoriteActivity: "lounging in the sun",
+        favoriteActivity: ["lounging in the sun"],
       },
       {
         petName: "Leo",
@@ -79,7 +77,7 @@ const peopleDetails = [
         breed: "persian cat",
         age: 3,
         isVaccinated: true,
-        favoriteActivity: "lounging in the sun",
+        favoriteActivity: ["lounging in the sun"],
       },
     ],
   },
@@ -99,16 +97,20 @@ const peopleDetails = [
         type: "reading",
         genre: "modern fantasy novels",
       },
+      {
+        type: "making crafts",
+      },
     ],
-    havePets: true,
     petsInfo: [
       {
         petName: "Snowy",
         petType: "rabbit",
         age: 2,
         isVaccinated: true,
-        favoriteActivity:
-          "enjoys hopping around her backyard and nibbling on carrots",
+        favoriteActivity: [
+          "hopping around her backyard",
+          "nibbling on carrots",
+        ],
       },
     ],
   },
@@ -183,7 +185,7 @@ const findUniqueHobbies = function (records) {
   return removeDuplicates(hobbies);
 };
 
-console.log(findUniqueHobbies(peopleDetails));
+// console.log(findUniqueHobbies(peopleDetails));
 
 // 7. How many pets belong to people who are currently unemployed? => 2
 const countPetsOfUnemployed = function (records) {
@@ -199,7 +201,7 @@ const countPetsOfUnemployed = function (records) {
 
 // console.log(countPetsOfUnemployed(peopleDetails));
 
-// 8. What is the average age of the individuals mentioned in the passage?
+// 8. What is the average age of the individuals mentioned in the passage? => 34.25
 const findAverageAge = function (records) {
   const sumOfAges = records
     .map((individual) => individual.age)
@@ -210,22 +212,20 @@ const findAverageAge = function (records) {
 
 // console.log(findAverageAge(peopleDetails));
 
-// 9. How many individuals have studied computer science, and how many of them have pets?
+// 9. How many individuals have studied computer science, and how many of them have pets? => 2
 const countIndividualStudiedCsAndHavePets = function (records) {
-  const csIndividualsWithPets = records.filter(
-    (individual) => individual.studiedCS && individual.havePets
-  );
+  const csIndividualsWithPets = records
+    .filter((individual) => individual.studiedCS)
+    .filter((individual) => individual.petsInfo.length > 0);
 
   return csIndividualsWithPets.length;
 };
 
-// console.log(countIndividualStudiedCsAndHavePets(peopleDetails));
+// console.log("Q9 ", countIndividualStudiedCsAndHavePets(peopleDetails));
 
-//10. How many individuals own more than one pet?
-const countIndividualsHavingMoreThanOnePet = function (records) {
-  const petDetails = records
-    .filter((individual) => individual.havePets)
-    .map((individual) => individual.petsInfo);
+//10. How many individuals own more than one pet? => 1
+const countIndividualsWithMoreThanOnePet = function (records) {
+  const petDetails = records.map((individual) => individual.petsInfo);
 
   const individualsWithMoreThanOnePet = petDetails.filter(
     (individualsPets) => individualsPets.length > 1
@@ -234,6 +234,51 @@ const countIndividualsHavingMoreThanOnePet = function (records) {
   return individualsWithMoreThanOnePet.length;
 };
 
-// console.log(countIndividualsHavingMoreThanOnePet(peopleDetails));
+// console.log("Q10", countIndividualsWithMoreThanOnePet(peopleDetails));
 
 // 11. Which pets are associated with specific favorite activities?
+const petsWithFavActivities = function (records) {
+  const petDetails = records.flatMap((individual) => individual.petsInfo);
+  return petDetails.filter((pet) => pet.favoriteActivity.length > 0);
+};
+
+// console.log("Q11 ", petsWithFavActivities(peopleDetails));
+
+// 12. What are the names of all animals that belong to people who live in Bangalore or Chennai?
+const petNamesLivingInBangaloreOrChennai = function (records) {
+  const peopleDetails = records.filter(
+    (individual) =>
+      individual.place === "Bangalore" || individual.place === "Chennai"
+  );
+
+  const petsDetails = peopleDetails.flatMap(
+    (individual) => individual.petsInfo
+  );
+
+  return petsDetails.map((specificPet) => specificPet.petName);
+};
+
+// console.log("Q12", petNamesLivingInBangaloreOrChennai(peopleDetails));
+
+// 13. How many vaccinated pets belong to people who do not own a car? => 4
+const countVaccinatedPetsOfPeopleWithoutCar = function (records) {
+  const individualsWithoutCar = records.filter(
+    (individual) => !individual.ownsCar
+  );
+
+  return countfullyVaccinatedPets(individualsWithoutCar);
+};
+
+// console.log("Q13", countVaccinatedPetsOfPeopleWithoutCar(peopleDetails));
+
+// 14. What is the most common type of pet among the group?
+// 15. How many individuals have more than two hobbies?
+const countIndividualsWithMoreThanTwoHobbies = function (records) {
+  const peopleHavingAbove2Hobbies = records.filter(
+    (individual) => individual.hobbies.length > 2
+  );
+
+  return peopleHavingAbove2Hobbies.length;
+};
+
+// console.log("Q15", countIndividualsWithMoreThanTwoHobbies(peopleDetails));
