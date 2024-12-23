@@ -111,3 +111,13 @@ const countEmployedIndividuals = function (records) {
 };
 
 console.log(countEmployedIndividuals(peopleDetails));
+
+// 2. How many people own a car?
+const countIndividualsOwningCar = function (records) {
+  const individualsWithCar = records.filter((individual) => individual.ownsCar);
+
+  return individualsWithCar.length;
+};
+
+console.log(countIndividualsOwningCar(peopleDetails));
+
