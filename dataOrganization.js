@@ -106,14 +106,14 @@ const peopleDetails = [
 
 // 1. How many individuals are currently employed? => 2
 const countEmployedIndividuals = function (records) {
-  const employedIndividuls = records.filter(
+  const employedIndividuals = records.filter(
     (individual) => individual.currentlyEmployed
   );
 
-  return employedIndividuls.length;
+  return employedIndividuals.length;
 };
 
-console.log(countEmployedIndividuals(peopleDetails));
+// console.log(countEmployedIndividuals(peopleDetails));
 
 // 2. How many people own a car? => 1
 const countIndividualsOwningCar = function (records) {
@@ -122,7 +122,7 @@ const countIndividualsOwningCar = function (records) {
   return individualsWithCar.length;
 };
 
-console.log(countIndividualsOwningCar(peopleDetails));
+// console.log(countIndividualsOwningCar(peopleDetails));
 
 // 3. How many pets are fully vaccinated? => 5
 const countfullyVaccinatedPets = function (records) {
@@ -134,7 +134,7 @@ const countfullyVaccinatedPets = function (records) {
   return fullyVaccinatedPets.length;
 };
 
-console.log(countfullyVaccinatedPets(peopleDetails));
+// console.log(countfullyVaccinatedPets(peopleDetails));
 
 //4. What are the names of all the pets, and what type of animal is each?
 const findPetNameAndType = function (records) {
@@ -145,11 +145,27 @@ const findPetNameAndType = function (records) {
   ]);
 };
 
-console.log(findPetNameAndType(peopleDetails));
+// console.log(findPetNameAndType(peopleDetails));
 
 // 5. Which cities do the individuals live in?
 const findCitiesIndividualsLiveIn = function (records) {
   return records.map((individual) => individual.place);
 };
 
-console.log(findCitiesIndividualsLiveIn(peopleDetails));
+// console.log(findCitiesIndividualsLiveIn(peopleDetails));
+
+// 6. How many hobbies are shared across the group? What are they?
+
+// 7. How many pets belong to people who are currently unemployed? => 2
+const countPetsOfUnemployed = function (records) {
+  const unemployedIndividuals = records.filter(
+    (individual) => !individual.currentlyEmployed
+  );
+  const petsDetails = unemployedIndividuals.flatMap(
+    (individual) => individual.petsInfo
+  );
+
+  return petsDetails.length;
+};
+
+console.log(countPetsOfUnemployed(peopleDetails));

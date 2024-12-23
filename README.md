@@ -18,7 +18,7 @@ Rahul, a "software engineer" from Pune, enjoys playing chess and gardening when 
 6. How many hobbies are shared across the group? What are they?
 7. How many pets belong to people who are currently unemployed?
 8. What is the average age of the individuals mentioned in the passage?
-9. How many individuals have studied computer science, and how many of them have pets?**
+9. How many individuals have studied computer science, and how many of them have pets?
 10. How many individuals own more than one pet?
 11. Which pets are associated with specific favorite activities?
 12. What are the names of all animals that belong to people who live in Bangalore or Chennai?
