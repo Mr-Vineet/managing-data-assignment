@@ -10,7 +10,8 @@ const peopleDetails = [
     petsInfo: [
       {
         petName: "Max",
-        petType: "golden retriever",
+        petType: "dog",
+        breed: "golden retriever",
         age: 4,
         isVaccinated: true,
         favoriteActivity: "fetch in the park",
@@ -57,14 +58,16 @@ const peopleDetails = [
     petsInfo: [
       {
         petName: "Bella",
-        petType: "persian cat",
+        petType: "cat",
+        breed: "persian cat",
         age: 3,
         isVaccinated: true,
         favoriteActivity: "lounging in the sun",
       },
       {
         petName: "Leo",
-        petType: "persian cat",
+        petType: "cat",
+        breed: "persian cat",
         age: 3,
         isVaccinated: true,
         favoriteActivity: "lounging in the sun",
@@ -91,7 +94,7 @@ const peopleDetails = [
     petsInfo: [
       {
         petName: "Snowy",
-        petType: "rescue rabbit",
+        petType: "rabbit",
         age: 2,
         isVaccinated: true,
         favoriteActivity:
@@ -148,3 +151,5 @@ console.log(findPetNameAndType(peopleDetails));
 const findCitiesIndividualsLiveIn = function (records) {
   return records.map((individual) => individual.place);
 };
+
+console.log(findCitiesIndividualsLiveIn(peopleDetails));
